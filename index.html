@@ -1,648 +1,978 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shada Praneeth Reddy Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
 
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-            },
-            colors: {
-              primary: "#2563eb",
-              secondary: "#475569",
-            },
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shada Praneeth Reddy Portfolio</title>
+  <meta name="description"
+    content="Praneeth Reddy — Product Manager and UX Researcher passionate about bridging the gap between human needs and business goals." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+          },
+          colors: {
+            primary: "#2563eb",
+            secondary: "#475569",
           },
         },
-      };
-    </script>
-    <style>
-      .blob {
-        position: absolute;
-        filter: blur(40px);
-        z-index: -1;
-        opacity: 0.4;
+      },
+    };
+  </script>
+  <style>
+    .blob {
+      position: absolute;
+      filter: blur(40px);
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    /* Subtle entrance animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
       }
-    </style>
-  </head>
-  <body
-    class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300"
-  >
-    <nav
-      class="fixed w-full z-50 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800"
-    >
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <span class="text-xl font-bold text-primary">Praneeth Reddy</span>
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-              <a
-                href="#about"
-                class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition"
-                >About</a
-              >
-              <a
-                href="#experience"
-                class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition"
-                >Experience</a
-              >
-              <a
-                href="#product"
-                class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition"
-                >Product</a
-              >
-              <a
-                href="#projects"
-                class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition"
-                >Projects</a
-              >
-              <a
-                href="#contact"
-                class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition"
-                >Contact</a
-              >
-            </div>
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.7s ease-out both;
+    }
+
+    .animation-delay-200 {
+      animation-delay: 0.2s;
+    }
+
+    .animation-delay-400 {
+      animation-delay: 0.4s;
+    }
+
+    .animation-delay-600 {
+      animation-delay: 0.6s;
+    }
+
+    /* Card hover lift */
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Project card process steps */
+    .process-step {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .process-step::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 28px;
+      bottom: -8px;
+      width: 2px;
+      background: linear-gradient(to bottom, #2563eb33, transparent);
+    }
+
+    .process-step:last-child::before {
+      display: none;
+    }
+
+    .process-step-dot {
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 3px solid #2563eb;
+      background: white;
+    }
+
+    .dark .process-step-dot {
+      background: #1e293b;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #2563eb, #7c3aed, #2563eb);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s ease infinite;
+    }
+
+    @keyframes shimmer {
+
+      0%,
+      100% {
+        background-position: 0% center;
+      }
+
+      50% {
+        background-position: 100% center;
+      }
+    }
+
+    /* Competency card glow */
+    .competency-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .competency-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .competency-card:hover::after {
+      left: 100%;
+    }
+
+    /* Section divider */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2563eb;
+      margin-bottom: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: #2563eb;
+      border-radius: 1px;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
+  <nav
+    class="fixed w-full z-50 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <span class="text-xl font-bold text-primary">Shada Praneeth Reddy</span>
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-4">
+            <a href="#about" class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">About</a>
+            <a href="#education"
+              class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">Education</a>
+            <a href="#experience"
+              class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">Experience</a>
+            <a href="#featured-projects"
+              class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">Product & Research</a>
+            <a href="#projects" class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">Tech</a>
+            <a href="#skills" class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">Skills</a>
+            <a href="#contact"
+              class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">Contact</a>
           </div>
-          <button
-            id="theme-toggle"
-            class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition"
-          >
-            <i class="fas fa-moon dark:hidden"></i>
-            <i class="fas fa-sun hidden dark:inline text-yellow-400"></i>
-          </button>
+        </div>
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-btn"
+          class="md:hidden p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition">
+          <i class="fas fa-bars text-lg"></i>
+        </button>
+        <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition">
+          <i class="fas fa-moon dark:hidden"></i>
+          <i class="fas fa-sun hidden dark:inline text-yellow-400"></i>
+        </button>
+      </div>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="md:hidden hidden pb-4">
+        <div class="flex flex-col space-y-2">
+          <a href="#about" class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">About</a>
+          <a href="#competencies"
+            class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">Skills</a>
+          <a href="#experience"
+            class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">Experience</a>
+          <a href="#featured-projects"
+            class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">Product & Research</a>
+          <a href="#product" class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">Case
+            Studies</a>
+          <a href="#projects" class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">Tech</a>
+          <a href="#contact" class="hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition">Contact</a>
         </div>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <section id="about" class="pt-32 pb-20 px-4">
-      <div
-        class="max-w-5xl mx-auto flex flex-col md:flex-row md:items-start items-center gap-10"
-      >
-        <div class="flex-1 text-center md:text-left">
-          <div
-            class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-primary uppercase bg-blue-100 dark:bg-blue-900/30 rounded-full"
-          >
-            Product Management & Software Development Enthusiast
-          </div>
-          <h1 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-            Hi, I'm <span class="text-primary">Shada Praneeth Reddy</span>
-          </h1>
-          <p
-            class="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed max-w-2xl mx-auto md:mx-0"
-          >
-            I am a Product Design & Management student with a strong foundation
-            in software development. I aspire to work as a Product Manager or
-            Software Developer, blending technical execution with user-focused
-            product decision-making.
-          </p>
-          <div class="flex flex-wrap justify-center md:justify-start gap-4">
-            <a
-              href="#contact"
-              class="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition shadow-lg shadow-blue-500/30"
-            >
-              Get in Touch
-            </a>
-            <a
-              href="https://wood-block-027.notion.site/Praneeth-s-Product-Profile-29971f863cb2804ab1fefceca824470f"
-              target="_blank"
-              class="border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 px-6 py-3 rounded-lg font-medium transition flex items-center gap-2"
-            >
-              <i class="fas fa-external-link-alt"></i> Notion Portfolio
-            </a>
-            <a
-              href="https://www.linkedin.com/in/praneeth-reddy-shada/"
-              class="text-slate-500 hover:text-primary text-2xl transition px-2"
-              target="_blank"
-              ><i class="fab fa-linkedin"></i
-            ></a>
-            <a
-              href="https://github.com/Praneethshada"
-              class="text-slate-500 hover:text-primary text-2xl transition px-2"
-              target="_blank"
-              ><i class="fab fa-github"></i
-            ></a>
-          </div>
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- HERO / ABOUT SECTION (Updated headline)    -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="about" class="pt-32 pb-32 px-4">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center items-center gap-10">
+      <div class="flex-1 text-center md:text-left animate-fade-in-up">
+        <div
+          class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-primary uppercase bg-blue-100 dark:bg-blue-900/30 rounded-full">
+          Product Management · UX Research · Software Engineering
         </div>
-        <div class="relative w-64 h-64 md:w-80 md:h-80 shrink-0 md:mt-8">
-          <div
-            class="absolute inset-0 bg-primary/20 rounded-full blob animate-pulse"
-          ></div>
-          <img
-            src="profile.png"
-            alt="Shada Praneeth Reddy"
-            class="relative w-full h-full object-cover object-center rounded-full shadow-2xl border-4 border-white dark:border-slate-800 hover:scale-105 transition duration-500"
-          />
-        </div>
-      </div>
-    </section>
-
-    <section class="py-16 bg-white dark:bg-slate-800/50">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-10 flex items-center gap-3">
-          <i class="fas fa-graduation-cap text-primary"></i> Education
-        </h2>
-        <div class="space-y-8">
-          <div class="border-l-4 border-primary pl-6 py-1">
-            <h3 class="text-xl font-bold">
-              M.Tech in Product Design and Management
-            </h3>
-            <p class="text-primary font-medium">IIIT Hyderabad | 2025 - 2027</p>
-            <p class="mt-2 text-slate-600 dark:text-slate-400">
-              Coursework: Product Management 101, Design Thinking, User Research
-              Methods, Business Fundamentals, Software Systems Development.
-            </p>
-          </div>
-          <div
-            class="border-l-4 border-slate-300 dark:border-slate-600 pl-6 py-1"
-          >
-            <h3 class="text-xl font-bold">B.E. in Computer Science</h3>
-            <p class="text-slate-500 font-medium">
-              University College of Engineering, Osmania University | 2021 -
-              2025
-            </p>
-            <p class="mt-2 text-slate-600 dark:text-slate-400">GPA: 8.95</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience" class="py-20 px-4">
-      <div class="max-w-5xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12">Experience</h2>
-        <div class="grid gap-8">
-          <div
-            class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition"
-          >
-            <div
-              class="flex flex-col md:flex-row md:items-center justify-between mb-4"
-            >
-              <div>
-                <h3 class="text-xl font-bold">
-                  Project Associate Trainee (Internship)
-                </h3>
-                <p class="text-primary">OSI Digital, Hyderabad</p>
-              </div>
-              <span
-                class="text-sm text-slate-500 mt-2 md:mt-0 px-3 py-1 bg-slate-100 dark:bg-slate-700 rounded-full"
-                >2025 (3 Months)</span
-              >
-            </div>
-            <ul
-              class="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-400"
-            >
-              <li>
-                Gained hands-on experience in Linux, SQL, PL/SQL, Java, and
-                Spring Boot.
-              </li>
-              <li>
-                Applied skills in a real-world sample project environment.
-              </li>
-            </ul>
-          </div>
-
-          <div
-            class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition"
-          >
-            <div
-              class="flex flex-col md:flex-row md:items-center justify-between mb-4"
-            >
-              <div>
-                <h3 class="text-xl font-bold">Summer Intern</h3>
-                <p class="text-primary">
-                  Center of Excellence in AI/ML, Osmania University
-                </p>
-              </div>
-              <span
-                class="text-sm text-slate-500 mt-2 md:mt-0 px-3 py-1 bg-slate-100 dark:bg-slate-700 rounded-full"
-                >Summer 2024</span
-              >
-            </div>
-            <p
-              class="font-semibold mb-2 text-sm uppercase tracking-wide text-slate-500"
-            >
-              Project: Audio Generation from Lip Movements
-            </p>
-            <ul
-              class="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-400"
-            >
-              <li>
-                Developed a deep learning model to convert lip movements into
-                speech using TensorFlow & gTTS.
-              </li>
-              <li>
-                Built specifically for speech rehabilitation and silent
-                communication applications.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-12 bg-slate-50 dark:bg-slate-900/50">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
-          <i class="fas fa-users text-primary"></i> Leadership & Volunteering
-        </h2>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div
-            class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700"
-          >
-            <div class="flex items-start gap-4">
-              <div
-                class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full text-primary shrink-0"
-              >
-                <i class="fas fa-flag"></i>
-              </div>
-              <div>
-                <h4 class="text-lg font-bold">
-                  Organizer & Lead - AI Pictionary
-                </h4>
-                <p class="text-sm text-slate-500 mb-2">
-                  Infinity 2k25 | Osmania University
-                </p>
-                <p class="text-slate-600 dark:text-slate-400 text-sm">
-                  Organized and led the technical team for the 'AI Pictionary'
-                  event, managing logistics, rule-setting, and execution for the
-                  college fest.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700"
-          >
-            <div class="flex items-start gap-4">
-              <div
-                class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full text-primary shrink-0"
-              >
-                <i class="fas fa-hands-helping"></i>
-              </div>
-              <div>
-                <h4 class="text-lg font-bold">Volunteer - Tech TriAIthon</h4>
-                <p class="text-sm text-slate-500 mb-2">
-                  Infinity 2k24 | Osmania University
-                </p>
-                <p class="text-slate-600 dark:text-slate-400 text-sm">
-                  Contributed to the planning and successful execution of the
-                  Tech TriAIthon technical event.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="product" class="py-20 bg-slate-100 dark:bg-slate-900">
-      <div class="max-w-5xl mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-4">Product Strategy & Case Studies</h2>
-        <p class="text-slate-600 dark:text-slate-400 mb-12">
-          Applying design thinking and market analysis to solve strategic
-          problems.
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+          Hi, I'm <span class="gradient-text">Praneeth</span>.
+        </h1>
+        <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed max-w-2xl mx-auto md:mx-0">
+          I'm a Product Design & Management student at IIIT Hyderabad with a strong foundation in Computer Science. I
+          love figuring out what people actually need and translating those insights into intuitive products that just
+          work. Whether I'm mapping out a product strategy, running user research, or writing the code myself, I thrive
+          on connecting the dots between business goals and real human problems. Currently, I'm exploring the
+          intersection of User Experience, Design, and Technology to build meaningful digital solutions.
         </p>
+        <div class="flex flex-wrap justify-center md:justify-start gap-4">
+          <a href="#contact"
+            class="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition shadow-lg shadow-blue-500/30">
+            Get in Touch
+          </a>
+          <a href="https://wood-block-027.notion.site/Praneeth-s-Product-Profile-29971f863cb2804ab1fefceca824470f"
+            target="_blank"
+            class="border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 px-6 py-3 rounded-lg font-medium transition flex items-center gap-2">
+            <i class="fas fa-external-link-alt"></i> Notion Portfolio
+          </a>
+          <a href="https://www.linkedin.com/in/praneeth-reddy-shada/"
+            class="text-slate-500 hover:text-primary text-2xl transition px-2" target="_blank"><i
+              class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/Praneethshada" class="text-slate-500 hover:text-primary text-2xl transition px-2"
+            target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div
+        class="relative w-64 h-64 md:w-80 md:h-80 shrink-0 profile-img-wrapper animate-fade-in-up animation-delay-400">
+        <div class="absolute inset-0 bg-primary/20 rounded-full blob animate-pulse"></div>
+        <img src="Praneeth.jpg" alt="Shada Praneeth Reddy"
+          class="relative w-full h-full object-cover object-center rounded-full shadow-2xl border-4 border-white dark:border-slate-800 hover:scale-105 transition duration-500 p-1" />
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- EDUCATION SECTION (Existing — preserved)   -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="education" class="py-16 bg-slate-50 dark:bg-slate-900/50">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-10 flex items-center gap-3">
+        <i class="fas fa-graduation-cap text-primary"></i> Education
+      </h2>
+      <div class="space-y-8">
+        <div class="border-l-4 border-primary pl-6 py-1">
+          <h3 class="text-xl font-bold">
+            M.Tech in Product Design and Management
+          </h3>
+          <p class="text-primary font-medium">IIIT Hyderabad | 2025 - 2027</p>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">
+            Coursework: Product Management, Design Thinking, User Research
+            Methods, Software Systems Development, Software Engineering, Statistical Methods in AI, User Interaction and
+            Usability of Digital Products.
+          </p>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">GPA: 8.75</p>
+        </div>
+        <div class="border-l-4 border-slate-300 dark:border-slate-600 pl-6 py-1">
+          <h3 class="text-xl font-bold">B.E. in Computer Science</h3>
+          <p class="text-slate-500 font-medium">
+            University College of Engineering, Osmania University | 2021 -
+            2025
+          </p>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">
+            Coursework: Data Structures and Algorithms, Operating Systems,
+            Database Management Systems, Distributed Systems, Object Oriented Programming using Java.
+          </p>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">GPA: 8.95</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- EXPERIENCE SECTION (Existing — preserved)  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="experience" class="py-20 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12 flex items-center gap-3">
+        <i class="fas fa-briefcase text-primary"></i> Experience
+      </h2>
+      <div class="grid gap-8">
+        <div
+          class="card-hover bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+            <div>
+              <h3 class="text-xl font-bold">
+                Project Associate Trainee (Internship)
+              </h3>
+              <p class="text-primary">OSI Digital, Hyderabad</p>
+            </div>
+            <span class="text-sm text-slate-500 mt-2 md:mt-0 px-3 py-1 bg-slate-100 dark:bg-slate-700 rounded-full">2025
+              (3 Months)</span>
+          </div>
+          <ul class="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-400">
+            <li>
+              Gained hands-on experience in Linux, SQL, PL/SQL, Java, and
+              Spring Boot.
+            </li>
+            <li>
+              Applied skills in a real-world sample project environment.
+            </li>
+          </ul>
+        </div>
 
         <div
-          class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg flex flex-col md:flex-row"
-        >
-          <div
-            class="md:w-1/3 bg-gradient-to-br from-purple-600 to-blue-600 p-8 flex items-center justify-center text-white"
-          >
-            <div class="text-center">
-              <i class="fas fa-chart-pie text-6xl mb-4 opacity-80"></i>
-              <h3 class="text-2xl font-bold">Canva Analysis</h3>
-              <p class="opacity-80 text-sm mt-2">
-                Product-Market Fit & Strategy
-              </p>
-            </div>
-          </div>
-          <div class="p-8 md:w-2/3">
-            <h4 class="text-xl font-bold mb-3">
-              Canva: Addressing Pro-User Drain
-            </h4>
-            <p class="text-slate-600 dark:text-slate-300 mb-4 text-sm">
-              Analyzed Canva's strategy and identified a key issue: skilled
-              users migrating to competitor tools.
-            </p>
-            <div class="space-y-3">
-              <div class="flex gap-3">
-                <i class="fas fa-lightbulb text-yellow-500 mt-1"></i>
-                <p class="text-sm text-slate-600 dark:text-slate-400">
-                  <strong>Solution:</strong> Proposed a new "Canva
-                  Professionals" product tier to retain and monetize high-value
-                  users.
-                </p>
-              </div>
-              <div class="flex gap-3">
-                <i class="fas fa-rocket text-red-500 mt-1"></i>
-                <p class="text-sm text-slate-600 dark:text-slate-400">
-                  <strong>Strategy:</strong> Developed a 3-phased GTM strategy,
-                  product roadmap, and risk analysis with success metrics.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="py-20 px-4">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12">Technical Projects</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow hover:shadow-xl transition duration-300 border border-slate-100 dark:border-slate-700 flex flex-col"
-          >
-            <div class="h-2 bg-blue-500"></div>
-            <div class="p-6 flex-1">
-              <div class="flex justify-between items-start mb-4">
-                <h3 class="text-lg font-bold">Weather App</h3>
-                <i class="fas fa-cloud-sun text-blue-500 text-xl"></i>
-              </div>
-              <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                Designed an intuitive application providing real-time global
-                weather updates (temperature, wind, conditions).
-              </p>
-              <div class="flex flex-wrap gap-2 mt-auto">
-                <span
-                  class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded"
-                  >React</span
-                >
-                <span
-                  class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded"
-                  >OpenWeatherMap API</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow hover:shadow-xl transition duration-300 border border-slate-100 dark:border-slate-700 flex flex-col"
-          >
-            <div class="h-2 bg-green-500"></div>
-            <div class="p-6 flex-1">
-              <div class="flex justify-between items-start mb-4">
-                <h3 class="text-lg font-bold">Audio Books Gen</h3>
-                <i class="fas fa-headphones text-green-500 text-xl"></i>
-              </div>
-              <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                Web app for the visually impaired. Converts printed/handwritten
-                text (PDF/PNG) to understandable speech using Facebook/mms-tts.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-auto">
-                <span
-                  class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded"
-                  >Python</span
-                >
-                <span
-                  class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded"
-                  >Flask</span
-                >
-                <span
-                  class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded"
-                  >OCR</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow hover:shadow-xl transition duration-300 border border-slate-100 dark:border-slate-700 flex flex-col"
-          >
-            <div class="h-2 bg-orange-500"></div>
-            <div class="p-6 flex-1">
-              <div class="flex justify-between items-start mb-4">
-                <h3 class="text-lg font-bold">Student Mgmt System</h3>
-                <i class="fas fa-database text-orange-500 text-xl"></i>
-              </div>
-              <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                Console-based system supporting CRUD, search operations, and
-                input validation for data integrity.
-              </p>
-              <div class="flex flex-wrap gap-2 mt-auto">
-                <span
-                  class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded"
-                  >Java</span
-                >
-                <span
-                  class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded"
-                  >MySQL</span
-                >
-                <span
-                  class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded"
-                  >JDBC</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-20 bg-slate-50 dark:bg-slate-900/50">
-      <div class="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-12">
-        <div>
-          <h2 class="text-2xl font-bold mb-6">Technical & Product Skills</h2>
-          <div class="space-y-4">
+          class="card-hover bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
             <div>
-              <h4 class="text-sm font-semibold text-slate-500 uppercase mb-2">
-                Languages & Dev
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="px-3 py-1 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-md text-sm"
-                  >Python</span
-                >
-                <span
-                  class="px-3 py-1 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-md text-sm"
-                  >Java</span
-                >
-                <span
-                  class="px-3 py-1 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-md text-sm"
-                  >ReactJS</span
-                >
-                <span
-                  class="px-3 py-1 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-md text-sm"
-                  >NodeJS</span
-                >
-                <span
-                  class="px-3 py-1 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-md text-sm"
-                  >SQL & MongoDB</span
-                >
-                <span
-                  class="px-3 py-1 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-md text-sm"
-                  >Linux</span
-                >
-              </div>
+              <h3 class="text-xl font-bold">Summer Internship</h3>
+              <p class="text-primary">
+                Center of Excellence in AI/ML, Osmania University
+              </p>
             </div>
-            <div>
-              <h4 class="text-sm font-semibold text-slate-500 uppercase mb-2">
-                Product
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="px-3 py-1 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-md text-sm"
-                  >Design Thinking</span
-                >
-                <span
-                  class="px-3 py-1 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-md text-sm"
-                  >User Research</span
-                >
-                <span
-                  class="px-3 py-1 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-md text-sm"
-                  >Product Management</span
-                >
-                <span
-                  class="px-3 py-1 bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-md text-sm"
-                  >Market Analysis</span
-                >
-              </div>
-            </div>
+            <span
+              class="text-sm text-slate-500 mt-2 md:mt-0 px-3 py-1 bg-slate-100 dark:bg-slate-700 rounded-full">Summer
+              2024</span>
           </div>
-        </div>
-
-        <div>
-          <h2 class="text-2xl font-bold mb-6">Achievements</h2>
-          <ul class="space-y-4">
-            <li class="flex items-start gap-3">
-              <i class="fas fa-trophy text-yellow-500 mt-1"></i>
-              <div>
-                <span class="block font-medium">Bronze Smart Coder</span>
-                <span class="text-sm text-slate-500"
-                  >Certified by Smart Interviews for DSA & Problem
-                  Solving.</span
-                >
-              </div>
+          <p class="font-semibold mb-2 text-sm uppercase tracking-wide text-slate-500">
+            Project: Audio Generation from Lip Movements
+          </p>
+          <ul class="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-400">
+            <li>
+              Developed a deep learning model to convert lip movements into
+              speech using TensorFlow & gTTS.
             </li>
-            <li class="flex items-start gap-3">
-              <i class="fas fa-award text-yellow-500 mt-1"></i>
-              <div>
-                <span class="block font-medium">1st Place - Code Garage</span>
-                <span class="text-sm text-slate-500"
-                  >Conducted by Computer Society, IEEE SB OUCE.</span
-                >
-              </div>
+            <li>
+              Built specifically for speech rehabilitation and silent
+              communication applications.
             </li>
           </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer
-      id="contact"
-      class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 py-12 px-4"
-    >
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-2xl font-bold mb-2">Let's Connect</h2>
-        <p class="text-slate-600 dark:text-slate-400 mb-8">
-          Currently based in Hyderabad, Telangana. Open to opportunities.
-        </p>
-        <div
-          class="flex flex-col md:flex-row justify-center items-center gap-6 mb-8"
-        >
-          <button
-            onclick="copyEmail()"
-            class="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-primary transition group cursor-pointer"
-            title="Click to copy email"
-          >
-            <i
-              class="fas fa-envelope text-2xl group-hover:scale-110 transition-transform"
-            ></i>
-            <span class="text-base select-all"
-              >praneethreddyshada@gmail.com</span
-            >
-          </button>
-          <a
-            href="https://www.linkedin.com/in/praneeth-reddy-shada/"
-            class="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-primary transition group"
-            target="_blank"
-          >
-            <i
-              class="fab fa-linkedin text-2xl group-hover:scale-110 transition-transform"
-            ></i>
-            <span class="text-base">LinkedIn</span>
-          </a>
-          <a
-            href="https://github.com/Praneethshada"
-            class="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-primary transition group"
-            target="_blank"
-          >
-            <i
-              class="fab fa-github text-2xl group-hover:scale-110 transition-transform"
-            ></i>
-            <span class="text-base">GitHub</span>
-          </a>
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- LEADERSHIP & VOLUNTEERING (Existing)       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-12 bg-slate-50 dark:bg-slate-900/50">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-8 flex items-center gap-3">
+        <i class="fas fa-users text-primary"></i> Leadership & Volunteering
+      </h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="card-hover bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
+          <div class="flex items-start gap-4">
+            <div class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full text-primary shrink-0">
+              <i class="fas fa-flag"></i>
+            </div>
+            <div>
+              <h4 class="text-lg font-bold">
+                Organizer & Lead - AI Pictionary
+              </h4>
+              <p class="text-sm text-slate-500 mb-2">
+                Infinity 2k25 | Osmania University
+              </p>
+              <p class="text-slate-600 dark:text-slate-400 text-sm">
+                Organized and led the technical team for the 'AI Pictionary'
+                event, managing logistics, rule-setting, and execution for the
+                college fest.
+              </p>
+            </div>
+          </div>
         </div>
-        <div
-          id="copy-toast"
-          class="fixed bottom-8 right-8 bg-primary text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300"
-        >
-          Email copied to clipboard!
+        <div class="card-hover bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
+          <div class="flex items-start gap-4">
+            <div class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full text-primary shrink-0">
+              <i class="fas fa-hands-helping"></i>
+            </div>
+            <div>
+              <h4 class="text-lg font-bold">Volunteer - Tech TriAIthon</h4>
+              <p class="text-sm text-slate-500 mb-2">
+                Infinity 2k24 | Osmania University
+              </p>
+              <p class="text-slate-600 dark:text-slate-400 text-sm">
+                Contributed to the planning and successful execution of the
+                Tech TriAIthon technical event.
+              </p>
+            </div>
+          </div>
         </div>
-        <p class="text-sm text-slate-500">
-          &copy; 2025 Shada Praneeth Reddy. All rights reserved.
-        </p>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <script>
-      const themeToggle = document.getElementById("theme-toggle");
-      const htmlElement = document.documentElement;
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- FEATURED PRODUCT & RESEARCH PROJECTS (NEW)        -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section id="featured-projects" class="py-20 bg-white dark:bg-slate-800/50">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-4 flex items-center gap-3">
+        <i class="fas fa-flask text-primary"></i> Product & Research Projects
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 mb-12 max-w-2xl">
+        Deep dives into real problems — from user research and design thinking to
+        market strategy and financial analysis.
+      </p>
 
-      // Check local storage or system preference
-      if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        htmlElement.classList.add("dark");
-      } else {
+      <div class="grid gap-10">
+
+        <!-- ── Saathi ── -->
+        <div
+          class="card-hover bg-gradient-to-br from-slate-50 to-blue-50/50 dark:from-slate-800 dark:to-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm">
+          <div class="flex flex-col lg:flex-row">
+            <!-- Left accent -->
+            <div
+              class="lg:w-1/3 bg-gradient-to-br from-indigo-500 to-violet-600 p-8 flex flex-col justify-center text-white">
+              <div class="mb-4">
+                <span class="text-xs uppercase tracking-widest opacity-70 font-semibold">UI/UX & Product Design</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Saathi</h3>
+              <p class="opacity-80 text-sm">Peer-to-Peer Travel Community</p>
+              <div class="mt-6 flex gap-2 flex-wrap">
+                <span class="text-xs px-2 py-1 bg-white/20 rounded-full">User Research</span>
+                <span class="text-xs px-2 py-1 bg-white/20 rounded-full">Community Design</span>
+                <span class="text-xs px-2 py-1 bg-white/20 rounded-full">Trust Building</span>
+              </div>
+            </div>
+            <!-- Right content -->
+            <div class="p-8 lg:w-2/3">
+              <div class="space-y-5">
+                <div class="process-step">
+                  <div class="process-step-dot"></div>
+                  <h4 class="font-bold text-sm uppercase tracking-wide text-red-500 mb-1">The Challenge</h4>
+                  <p class="text-sm text-slate-600 dark:text-slate-400">How might we design digital platforms that build
+                    trust between tourists and local communities?</p>
+                </div>
+                <div class="process-step">
+                  <div class="process-step-dot"></div>
+                  <h4 class="font-bold text-sm uppercase tracking-wide text-amber-500 mb-1">The Process</h4>
+                  <p class="text-sm text-slate-600 dark:text-slate-400">Conducted deep user needs analysis to understand
+                    the friction points in local travel and community integration.</p>
+                </div>
+                <div class="process-step">
+                  <div class="process-step-dot"></div>
+                  <h4 class="font-bold text-sm uppercase tracking-wide text-emerald-500 mb-1">The Solution</h4>
+                  <p class="text-sm text-slate-600 dark:text-slate-400">Designed a community-driven travel platform that
+                    proves digital platforms do not have to isolate us, fostering genuine connections and safe
+                    exploration.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Hawkeye ── -->
+        <div
+          class="card-hover bg-gradient-to-br from-slate-50 to-emerald-50/50 dark:from-slate-800 dark:to-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm">
+          <div class="flex flex-col lg:flex-row">
+            <!-- Left accent -->
+            <div
+              class="lg:w-1/3 bg-gradient-to-br from-emerald-500 to-teal-600 p-8 flex flex-col justify-center text-white">
+              <div class="mb-4">
+                <span class="text-xs uppercase tracking-widest opacity-70 font-semibold">Design Thinking & IoT</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Hawkeye</h3>
+              <p class="opacity-80 text-sm">Smart Library Management</p>
+              <div class="mt-6 flex gap-2 flex-wrap">
+                <span class="text-xs px-2 py-1 bg-white/20 rounded-full">Double Diamond</span>
+                <span class="text-xs px-2 py-1 bg-white/20 rounded-full">Contextual Inquiry</span>
+                <span class="text-xs px-2 py-1 bg-white/20 rounded-full">RFID/IoT</span>
+              </div>
+            </div>
+            <!-- Right content -->
+            <div class="p-8 lg:w-2/3">
+              <div class="space-y-5">
+                <div class="process-step">
+                  <div class="process-step-dot"></div>
+                  <h4 class="font-bold text-sm uppercase tracking-wide text-red-500 mb-1">The Challenge</h4>
+                  <p class="text-sm text-slate-600 dark:text-slate-400">Library staff were experiencing physical burnout
+                    from manual book tracking, leaving zero time for career upskilling.</p>
+                </div>
+                <div class="process-step">
+                  <div class="process-step-dot"></div>
+                  <h4 class="font-bold text-sm uppercase tracking-wide text-amber-500 mb-1">The Process</h4>
+                  <p class="text-sm text-slate-600 dark:text-slate-400">Applied the Double Diamond framework. Conducted
+                    on-site contextual inquiries, developed the "Comfort Kumar" persona, and led 4-3-3 brain-writing
+                    ideation sessions.</p>
+                </div>
+                <div class="process-step">
+                  <div class="process-step-dot"></div>
+                  <h4 class="font-bold text-sm uppercase tracking-wide text-emerald-500 mb-1">The Solution</h4>
+                  <p class="text-sm text-slate-600 dark:text-slate-400">Conceptualized and prototyped a handheld RFID
+                    scanning device with immediate LED/buzzer feedback and a mechanical spine-width sensor to automate
+                    row-level book detection.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Canva Case Study ── -->
+        <div
+          class="card-hover bg-gradient-to-br from-slate-50 to-purple-50/50 dark:from-slate-800 dark:to-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm">
+          <div class="flex flex-col lg:flex-row">
+            <!-- Left accent -->
+            <div
+              class="lg:w-1/3 bg-gradient-to-br from-purple-600 to-blue-600 p-8 flex flex-col justify-center text-white">
+              <div class="mb-4">
+                <span class="text-xs uppercase tracking-widest opacity-70 font-semibold">Product Strategy & Market
+                  Analysis</span>
+              </div>
+              <h3 class="text-2xl font-bold mb-2">Canva</h3>
+              <p class="opacity-80 text-sm">Case Study</p>
+              <div class="mt-6 flex gap-2 flex-wrap">
+                <span class="text-xs px-2 py-1 bg-white/20 rounded-full">Product-Market Fit</span>
+                <span class="text-xs px-2 py-1 bg-white/20 rounded-full">Strategic Pivots</span>
+                <span class="text-xs px-2 py-1 bg-white/20 rounded-full">Competitive Analysis</span>
+              </div>
+            </div>
+            <!-- Right content -->
+            <div class="p-8 lg:w-2/3">
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-bold text-sm uppercase tracking-wide text-purple-500 mb-2">Overview</h4>
+                  <p class="text-sm text-slate-600 dark:text-slate-400">Executed a comprehensive breakdown of Canva's
+                    current market positioning.</p>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm uppercase tracking-wide text-purple-500 mb-2">Key Deliverables</h4>
+                  <p class="text-sm text-slate-600 dark:text-slate-400">Researched the platform's Product-Market Fit and
+                    proposed actionable strategic pivots to maintain competitive advantage and capture new user
+                    segments.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- TECH PROJECTS (Existing — preserved)       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="projects" class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12 flex items-center gap-3">
+        <i class="fas fa-laptop-code text-primary"></i> Technical Projects
+      </h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          class="group card-hover bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow border border-slate-100 dark:border-slate-700 flex flex-col">
+          <div class="h-2 bg-blue-500"></div>
+          <div class="p-6 flex-1">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-lg font-bold">QueryTime- Classroom Q&A Platform</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">
+              Developed a full-stack MERN application for classroom query management, featuring JWT-based authentication
+              with
+              role-based access control, RESTful APIs for classroom and question handling, and Redux Toolkit for
+              centralized state
+              management enabling teachers to create virtual classrooms with unique join codes and students to submit
+              questions.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">React</span>
+              <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">Redux</span>
+              <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">Node</span>
+              <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">Express</span>
+              <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">MongoDB</span>
+
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="group card-hover bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow border border-slate-100 dark:border-slate-700 flex flex-col">
+          <div class="h-2 bg-green-500"></div>
+          <div class="p-6 flex-1">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-lg font-bold">RTI RAG Chatbot</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">
+              Built a source-grounded chatbot for Indian Right to Information (RTI) queries using official government
+              PDFs.
+              Implemented document ingestion with section-aware chunking and MiniLM embeddings, persisted in ChromaDB,
+              and
+              served answers via Llama 3 model with history-aware query reformulation, MMR retrieval, and inline
+              citations.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">Python</span>
+              <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">Streamlit</span>
+              <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">LangChain</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="group card-hover bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow border border-slate-100 dark:border-slate-700 flex flex-col">
+          <div class="h-2 bg-orange-500"></div>
+          <div class="p-6 flex-1">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-lg font-bold">Student Management System</h3>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">
+              Developed a RESTful Student Management System using Spring Boot and MySQL, implementing CRUD operations
+              with layered architecture, DTO pattern, validation, and proper exception handling.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-auto">
+              <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">Java</span>
+              <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">MySQL</span>
+              <span class="text-xs bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded">Spring Boot</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SKILLS & ACHIEVEMENTS                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section id="skills" class="py-20 bg-slate-50 dark:bg-slate-900/50">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-3 flex items-center gap-3">
+        <i class="fas fa-tools text-primary"></i> Skills
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 mb-12 max-w-2xl">
+        A blend of product thinking, design empathy, and engineering.
+      </p>
+      <!-- ── Detailed Skills by Category ── -->
+      <div
+        class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-8 mb-12 shadow-sm">
+        <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+          <i class="fas fa-layer-group text-primary"></i> Technical & Product Skills
+        </h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Languages -->
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-7 h-7 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                <i class="fas fa-terminal text-xs text-blue-600 dark:text-blue-400"></i>
+              </div>
+              <h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Languages
+              </h4>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Python</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Java</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">C</span>
+            </div>
+          </div>
+
+          <!-- Development -->
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-7 h-7 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
+                <i class="fas fa-code-branch text-xs text-emerald-600 dark:text-emerald-400"></i>
+              </div>
+              <h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Development
+              </h4>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Linux</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Git</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">HTML</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">CSS</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">JavaScript</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">ReactJS</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">NodeJS</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">SQL</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">MongoDB</span>
+            </div>
+          </div>
+
+          <!-- Core Concepts -->
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-7 h-7 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
+                <i class="fas fa-sitemap text-xs text-amber-600 dark:text-amber-400"></i>
+              </div>
+              <h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Core
+                Concepts
+              </h4>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Data
+                Structures & Algorithms</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">OOP</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">DBMS</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">System
+                Design</span>
+            </div>
+          </div>
+
+          <!-- Machine Learning -->
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-7 h-7 bg-violet-100 dark:bg-violet-900/30 rounded-lg flex items-center justify-center">
+                <i class="fas fa-brain text-xs text-violet-600 dark:text-violet-400"></i>
+              </div>
+              <h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Machine
+                Learning</h4>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Regression</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Classification</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Neural
+                Networks</span>
+            </div>
+          </div>
+
+          <!-- Product -->
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-7 h-7 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex items-center justify-center">
+                <i class="fas fa-cubes text-xs text-pink-600 dark:text-pink-400"></i>
+              </div>
+              <h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Product
+              </h4>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Design
+                Thinking</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">User
+                Research</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Product
+                Management</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Market
+                Analysis</span>
+            </div>
+          </div>
+
+          <!-- UX Research & Design -->
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-7 h-7 bg-teal-100 dark:bg-teal-900/30 rounded-lg flex items-center justify-center">
+                <i class="fas fa-comments text-xs text-teal-600 dark:text-teal-400"></i>
+              </div>
+              <h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide">UX Research
+                & Design
+              </h4>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">
+                Design
+                Thinking</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">User
+                Personas</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Empathy
+                Mapping</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">UI/UX
+                Principles</span>
+              <span
+                class="px-3 py-1.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg text-sm">Rapid
+                Prototyping</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Achievements ── -->
+      <div>
+        <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+          <i class="fas fa-medal text-yellow-500"></i> Achievements
+        </h3>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div
+            class="card-hover bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 flex items-start gap-4">
+            <div
+              class="w-10 h-10 bg-yellow-100 dark:bg-yellow-900/30 rounded-xl flex items-center justify-center shrink-0">
+              <i class="fas fa-trophy text-yellow-500"></i>
+            </div>
+            <div>
+              <span class="block font-semibold">Bronze Smart Coder</span>
+              <span class="text-sm text-slate-500 dark:text-slate-400">Certified by Smart Interviews for DSA & Problem
+                Solving.</span>
+            </div>
+          </div>
+          <div
+            class="card-hover bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 flex items-start gap-4">
+            <div
+              class="w-10 h-10 bg-yellow-100 dark:bg-yellow-900/30 rounded-xl flex items-center justify-center shrink-0">
+              <i class="fas fa-award text-yellow-500"></i>
+            </div>
+            <div>
+              <span class="block font-semibold">1st Place - Code Garage</span>
+              <span class="text-sm text-slate-500 dark:text-slate-400">Conducted by Computer Society, IEEE SB
+                OUCE.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FOOTER / CONTACT (Existing — preserved)    -->
+  <!-- ═══════════════════════════════════════════ -->
+  <footer id="contact" class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 py-12 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-2">Let's Connect</h2>
+      <p class="text-slate-600 dark:text-slate-400 mb-8">
+        Currently based in Hyderabad, Telangana. Open to opportunities.
+      </p>
+      <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-8">
+        <button onclick="copyEmail()"
+          class="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-primary transition group cursor-pointer"
+          title="Click to copy email">
+          <i class="fas fa-envelope text-2xl group-hover:scale-110 transition-transform"></i>
+          <span class="text-base select-all">praneethreddyshada@gmail.com</span>
+        </button>
+        <a href="https://www.linkedin.com/in/praneeth-reddy-shada/"
+          class="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-primary transition group"
+          target="_blank">
+          <i class="fab fa-linkedin text-2xl group-hover:scale-110 transition-transform"></i>
+          <span class="text-base">LinkedIn</span>
+        </a>
+        <a href="https://github.com/Praneethshada"
+          class="flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-primary transition group"
+          target="_blank">
+          <i class="fab fa-github text-2xl group-hover:scale-110 transition-transform"></i>
+          <span class="text-base">GitHub</span>
+        </a>
+      </div>
+      <div id="copy-toast"
+        class="fixed bottom-8 right-8 bg-primary text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300">
+        Email copied to clipboard!
+      </div>
+      <p class="text-sm text-slate-500">
+        &copy; 2026 Shada Praneeth Reddy. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    const htmlElement = document.documentElement;
+
+    // Check local storage or system preference
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      htmlElement.classList.add("dark");
+    } else {
+      htmlElement.classList.remove("dark");
+    }
+
+    themeToggle.addEventListener("click", () => {
+      if (htmlElement.classList.contains("dark")) {
         htmlElement.classList.remove("dark");
+        localStorage.theme = "light";
+      } else {
+        htmlElement.classList.add("dark");
+        localStorage.theme = "dark";
       }
+    });
 
-      themeToggle.addEventListener("click", () => {
-        if (htmlElement.classList.contains("dark")) {
-          htmlElement.classList.remove("dark");
-          localStorage.theme = "light";
-        } else {
-          htmlElement.classList.add("dark");
-          localStorage.theme = "dark";
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+      // Close mobile menu on link click
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+    }
+
+    // Copy email to clipboard
+    function copyEmail() {
+      const email = "praneethreddyshada@gmail.com";
+      navigator.clipboard
+        .writeText(email)
+        .then(() => {
+          const toast = document.getElementById("copy-toast");
+          toast.classList.remove("translate-y-20", "opacity-0");
+          toast.classList.add("translate-y-0", "opacity-100");
+
+          setTimeout(() => {
+            toast.classList.remove("translate-y-0", "opacity-100");
+            toast.classList.add("translate-y-20", "opacity-0");
+          }, 2000);
+        })
+        .catch((err) => {
+          alert("Email: praneethreddyshada@gmail.com");
+        });
+    }
+
+    // Scroll-triggered fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-fade-in-up");
+          observer.unobserve(entry.target);
         }
       });
+    }, observerOptions);
 
-      // Copy email to clipboard
-      function copyEmail() {
-        const email = "praneethreddyshada@gmail.com";
-        navigator.clipboard
-          .writeText(email)
-          .then(() => {
-            const toast = document.getElementById("copy-toast");
-            toast.classList.remove("translate-y-20", "opacity-0");
-            toast.classList.add("translate-y-0", "opacity-100");
+    document.querySelectorAll(".card-hover").forEach((el) => {
+      el.style.opacity = "0";
+      observer.observe(el);
+    });
+  </script>
+</body>
 
-            setTimeout(() => {
-              toast.classList.remove("translate-y-0", "opacity-100");
-              toast.classList.add("translate-y-20", "opacity-0");
-            }, 2000);
-          })
-          .catch((err) => {
-            alert("Email: praneethreddyshada@gmail.com");
-          });
-      }
-    </script>
-  </body>
 </html>
